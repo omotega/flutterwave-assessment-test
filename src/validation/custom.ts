@@ -4,7 +4,7 @@ export const validationMessages = {
     "any.required": '"account name" is required.',
   },
   month: {
-    "string.empty": "Month cannot be empty.",
+    "number.empty": "Month cannot be empty.",
     "any.required": "Month is required!",
   },
   date: {
