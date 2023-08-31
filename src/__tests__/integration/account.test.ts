@@ -110,7 +110,7 @@ describe("POST /api/account/getaccount", () => {
       accountNumber: accountDetails.accountNumber,
     };
     const { body, error } = await api
-      .post("/api/account/getaccount")
+      .get("/api/account/getaccount")
       .send(data)
       .expect(httpStatus.OK);
 
@@ -132,7 +132,7 @@ describe("POST /api/account/getaccount", () => {
       accountNumber: await Helper.generateAccountNumber(),
     };
     const { body } = await api
-      .post("/api/account/getaccount")
+      .get("/api/account/getaccount")
       .send(data)
       .expect(httpStatus.NOT_FOUND);
 
@@ -140,8 +140,8 @@ describe("POST /api/account/getaccount", () => {
     expect(body.message).toBe(ACCOUNT_NOT_FOUND);
   });
 
-  describe("GET /api/account/getallaccount", () => {
-    test("should return error if account number is not valid", async () => {
+  describe("GET /api/account/getallaccounts", () => {
+    test("should return all the accounts and statuscode 200", async () => {
       const { body } = await api
         .get("/api/account/getallaccounts")
         .expect(httpStatus.OK);

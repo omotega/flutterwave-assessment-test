@@ -9,4 +9,3 @@ export interface accountModel {
   accountType: string;
   balance: number;
 }
-
