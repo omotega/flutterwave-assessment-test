@@ -19,7 +19,7 @@ import Helper from "../../utils/helper";
 
 const api = supertest(app);
 
-let accountDetails;
+let accountDetails:any;
 beforeAll(async () => {
   const mongoServer = await MongoMemoryServer.create();
   await mongoose.connect(mongoServer.getUri());
