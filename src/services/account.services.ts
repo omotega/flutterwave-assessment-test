@@ -8,12 +8,13 @@ import { ACCOUNT_CREATION_ERROR, ACCOUNT_NOT_FOUND } from "../utils/message";
 async function createBankAccount(payload: accountModel): Promise<accountModel> {
   const { accountName, accountType, dateOfBirth, balance } = payload;
   const accountNumber = await Helper.generateAccountNumber();
+  const month = dateOfBirth.month.toLowerCase();
   const bankAccount = await accountqueries.createAccount({
     accountName: accountName,
     accountNumber: accountNumber,
     accountType: accountType,
     dateOfBirth: {
-      month: dateOfBirth.month.toLowerCase(),
+      month: month,
       date: dateOfBirth.date,
       year: dateOfBirth.year,
     },

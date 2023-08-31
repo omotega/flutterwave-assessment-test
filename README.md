@@ -1,8 +1,15 @@
 # flutterwave-assessment-test
 
 
+## Technologies used
 
-### Installation
+1. Mongoose
+
+2. MongoDb
+
+3. Express
+
+## Installation
 
 1. Clone the repo
    ```sh
@@ -17,13 +24,12 @@
 4. Execute yarn dev and You will be able to access the API from localhost:5400
 
 
-### Hosted Api link
+## Hosted Api link
 
 Link: https://bankla.onrender.com
 
 
 ## APIs
----
 
 ### create Account
 
@@ -64,6 +70,7 @@ Success
     }
 }
 ```
+
 ---
 
 ### fetch Account
@@ -99,6 +106,7 @@ Success
     }
 }
 ```
+
 
 ---
 

@@ -9,7 +9,7 @@
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js",
     "build": "tsc",
-    "test":"jest"
+    "test": "jest"
   },
   "dependencies": {
     "dotenv": "^16.3.1",

@@ -26,6 +26,7 @@ const createAccountValidation = (payload: accountModel) => {
       month: joi
         .string()
         .valid(...Months)
+        .insensitive()
         .required()
         .messages(validationMessages.month),
       date: joi.number().required().messages(validationMessages.date),

@@ -2,7 +2,7 @@ export interface accountModel {
   accountName: string;
   accountNumber?: string;
   dateOfBirth: {
-    month: string;
+    month: numnber;
     date: number;
     year: number;
   };
