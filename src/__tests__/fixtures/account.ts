@@ -1,9 +1,5 @@
-import accountmodel from "../../database/model/accountmodel";
 import { faker } from "@faker-js/faker";
 
-export const insertAccount = async (accountdetails: any) => {
-  return await accountmodel.create(accountdetails);
-};
 
 export const accountdataOne = {
   accountName: faker.person.fullName(),

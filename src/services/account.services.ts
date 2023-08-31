@@ -3,7 +3,7 @@ import accountqueries from "../database/queries/accountqueries";
 import { accountModel } from "../types/account";
 import { AppError } from "../utils/errors";
 import Helper from "../utils/helper";
-import { ACCOUNT_CREATION_ERROR } from "../utils/message";
+import { ACCOUNT_CREATION_ERROR, ACCOUNT_NOT_FOUND } from "../utils/message";
 
 async function createBankAccount(payload: accountModel) {
   const { accountName, accountType, dateOfBirth, balance } = payload;
@@ -27,6 +27,19 @@ async function createBankAccount(payload: accountModel) {
   return bankAccount;
 }
 
+async function getAccountDetails(accountNumber: string) {
+  const account = await accountqueries.findAccountByAccountNumber(
+    accountNumber
+  );
+  if (!account)
+    throw new AppError({
+      httpCode: httpStatus.NOT_FOUND,
+      description: ACCOUNT_NOT_FOUND,
+    });
+  return account;
+}
+
 export default {
   createBankAccount,
+  getAccountDetails,
 };

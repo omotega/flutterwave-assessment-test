@@ -7,7 +7,7 @@ const AccountSchema = new mongoose.Schema({
     required: true,
   },
   accountNumber: {
-    type: "Number",
+    type: "string",
     unique: true,
   },
 

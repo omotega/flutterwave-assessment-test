@@ -39,6 +39,18 @@ const createAccountValidation = (payload: accountModel) => {
   return accountSchema.validate(payload);
 };
 
+const getAccount = (accountNumber: Number) => {
+  const accountSchema = joi.object({
+    accountNumber: joi
+      .string()
+      .length(10)
+      .required()
+      .messages(validationMessages.accountNumber),
+  });
+  return accountSchema.validate(accountNumber);
+};
+
 export default {
   createAccountValidation,
+  getAccount,
 };

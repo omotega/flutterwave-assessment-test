@@ -11,10 +11,15 @@ import {
   accountdataTwo,
 } from "../fixtures/account";
 import httpStatus from "http-status";
-import { ACCOUNT_CREATION_SUCCESS } from "../../utils/message";
+import {
+  ACCOUNT_CREATION_SUCCESS,
+  ACCOUNT_NOT_FOUND,
+} from "../../utils/message";
+import Helper from "../../utils/helper";
 
 const api = supertest(app);
 
+let accountDetails;
 beforeAll(async () => {
   const mongoServer = await MongoMemoryServer.create();
   await mongoose.connect(mongoServer.getUri());
@@ -31,10 +36,12 @@ describe("POST /api/account/createaccount", () => {
       .post("/api/account/createaccount")
       .send(data)
       .expect(httpStatus.CREATED);
+    accountDetails = body.data;
     expect(body).toHaveProperty("message");
     expect(body.message).toBe(ACCOUNT_CREATION_SUCCESS);
     expect(body.data).toHaveProperty("_id");
     expect(body.data).toHaveProperty("balance");
+    expect(body.data).toHaveProperty("accountNumber");
     expect(body.data).toMatchObject({
       accountName: data.accountName,
       accountType: data.accountType,
@@ -73,7 +80,7 @@ describe("POST /api/account/createaccount", () => {
       .send(data)
       .expect(httpStatus.BAD_REQUEST);
     expect(body).toHaveProperty("message");
-    expect(body.message).toBe('Month is required!');
+    expect(body.message).toBe("Month is required!");
   });
 
   test("shouuld return error message if date is not passed", async () => {
@@ -83,7 +90,7 @@ describe("POST /api/account/createaccount", () => {
       .send(data)
       .expect(httpStatus.BAD_REQUEST);
     expect(body).toHaveProperty("message");
-    expect(body.message).toBe('date  is required!');
+    expect(body.message).toBe("date  is required!");
   });
 
   test("shouuld return error message if date is not passed", async () => {
@@ -94,5 +101,42 @@ describe("POST /api/account/createaccount", () => {
       .expect(httpStatus.BAD_REQUEST);
     expect(body).toHaveProperty("message");
     expect(body.message).toBe('"Year" is required.');
+  });
+});
+
+describe("POST /api/account/getaccount", () => {
+  test("should return account details if account number is valid", async () => {
+    const data = {
+      accountNumber: accountDetails.accountNumber,
+    };
+    const { body, error } = await api
+      .post("/api/account/getaccount")
+      .send(data)
+      .expect(httpStatus.OK);
+
+    expect(body.data).toMatchObject({
+      accountName: accountDetails.accountName,
+      accountType: accountDetails.accountType,
+      accountNumber: data.accountNumber,
+      dateOfBirth: {
+        month: accountDetails.dateOfBirth.month,
+        date: accountDetails.dateOfBirth.date,
+        year: accountDetails.dateOfBirth.year,
+      },
+      balance: accountDetails.balance,
+    });
+  });
+
+  test("should return error if account number is not valid", async () => {
+    const data = {
+      accountNumber: await Helper.generateAccountNumber(),
+    };
+    const { body } = await api
+      .post("/api/account/getaccount")
+      .send(data)
+      .expect(httpStatus.NOT_FOUND);
+
+    expect(body).toHaveProperty("message");
+    expect(body.message).toBe(ACCOUNT_NOT_FOUND);
   });
 });

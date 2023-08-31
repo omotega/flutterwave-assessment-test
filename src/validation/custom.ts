@@ -19,4 +19,8 @@ export const validationMessages = {
     "string.empty": "Account type cannot be empty.",
     "any.required": '"Account type" is required!',
   },
+  accountNumber: {
+    "string.empty": "account number cannot be empty.",
+    "any.required": '"account number" is required.',
+  },
 };

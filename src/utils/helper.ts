@@ -3,7 +3,9 @@ class Helper {
     const min = 1000000000;
     const max = 9999999999;
     let generatedNumbers: any = [];
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    const randomNumber = String(
+      Math.floor(Math.random() * (max - min + 1)) + min
+    );
 
     var isUnique = true;
     for (var i = 0; i < generatedNumbers.length; i++) {
