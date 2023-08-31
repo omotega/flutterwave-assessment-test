@@ -4,11 +4,7 @@ import { faker } from "@faker-js/faker";
 export const accountdataOne = {
   accountName: faker.person.fullName(),
   accountType: "savings",
-  dateOfBirth: {
-    month: faker.date.month().toLowerCase(),
-    date: faker.date.birthdate().getDay(),
-    year: faker.date.birthdate().getFullYear(),
-  },
+  dateOfBirth: faker.date.anytime(),
 };
 
 export const accountdataTwo = {

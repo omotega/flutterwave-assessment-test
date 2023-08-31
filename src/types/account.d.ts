@@ -1,11 +1,7 @@
 export interface accountModel {
   accountName: string;
   accountNumber?: string;
-  dateOfBirth: {
-    month: string;
-    date: number;
-    year: number;
-  };
+  dateOfBirth: string;
   accountType: string;
   balance: number;
 }

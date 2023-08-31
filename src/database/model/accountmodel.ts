@@ -11,23 +11,13 @@ const AccountSchema = new mongoose.Schema({
     type: "string",
     unique: true,
   },
-
   dateOfBirth: {
-    month: {
-      type: "String",
-      required: true,
-    },
-    date: {
-      type: "Number",
-      required: true,
-    },
-    year: {
-      type: "Number",
-      required: true,
-    },
+    type: "String",
   },
   accountType: {
     type: "String",
+    enum: ["savings", "checking", "current", "business"],
+    defaultValue: "savings",
     required: true,
   },
   balance: {

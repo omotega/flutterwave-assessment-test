@@ -15,11 +15,11 @@ import {
   ACCOUNT_CREATION_SUCCESS,
   ACCOUNT_NOT_FOUND,
 } from "../../utils/message";
-import Helper from "../../utils/helper";
+import { generateAccountNumber } from "../../utils/helper";
 
 const api = supertest(app);
 
-let accountDetails:any;
+let accountDetails: any;
 beforeAll(async () => {
   const mongoServer = await MongoMemoryServer.create();
   await mongoose.connect(mongoServer.getUri());
@@ -45,11 +45,7 @@ describe("POST /api/account/createaccount", () => {
     expect(body.data).toMatchObject({
       accountName: data.accountName,
       accountType: data.accountType,
-      dateOfBirth: {
-        month: data.dateOfBirth.month,
-        date: data.dateOfBirth.date,
-        year: data.dateOfBirth.year,
-      },
+      dateOfBirth: data.dateOfBirth,
       balance: 0,
     });
   });
@@ -73,34 +69,14 @@ describe("POST /api/account/createaccount", () => {
     expect(body.message).toBe('"Account type" is required!');
   });
 
-  test("shouuld return error message if month is not passed", async () => {
+  test("shouuld return error message if dob is not passed", async () => {
     const data = accountdataFour;
     const { body } = await api
       .post("/api/account/createaccount")
       .send(data)
       .expect(httpStatus.BAD_REQUEST);
     expect(body).toHaveProperty("message");
-    expect(body.message).toBe("Month is required!");
-  });
-
-  test("shouuld return error message if date is not passed", async () => {
-    const data = accountdataFive;
-    const { body } = await api
-      .post("/api/account/createaccount")
-      .send(data)
-      .expect(httpStatus.BAD_REQUEST);
-    expect(body).toHaveProperty("message");
-    expect(body.message).toBe("date  is required!");
-  });
-
-  test("shouuld return error message if date is not passed", async () => {
-    const data = accountdataSix;
-    const { body } = await api
-      .post("/api/account/createaccount")
-      .send(data)
-      .expect(httpStatus.BAD_REQUEST);
-    expect(body).toHaveProperty("message");
-    expect(body.message).toBe('"Year" is required.');
+    expect(body.message).toBe('"date of birth  is required!"');
   });
 });
 
@@ -118,18 +94,14 @@ describe("POST /api/account/getaccount", () => {
       accountName: accountDetails.accountName,
       accountType: accountDetails.accountType,
       accountNumber: data.accountNumber,
-      dateOfBirth: {
-        month: accountDetails.dateOfBirth.month,
-        date: accountDetails.dateOfBirth.date,
-        year: accountDetails.dateOfBirth.year,
-      },
+      dateOfBirth: accountDetails.dateOfBirth,
       balance: accountDetails.balance,
     });
   });
 
   test("should return error if account number is not valid", async () => {
     const data = {
-      accountNumber: await Helper.generateAccountNumber(),
+      accountNumber: generateAccountNumber(),
     };
     const { body } = await api
       .get("/api/account/getaccount")

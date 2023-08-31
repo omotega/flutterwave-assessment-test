@@ -1,6 +1,5 @@
 # flutterwave-assessment-test
 
-
 ## Technologies used
 
 1. Mongoose
@@ -19,15 +18,13 @@
    ```sh
    yarn install
    ```
-3. Make a copy of the .env.example file to .env 
+3. Make a copy of the .env.example file to .env
 
 4. Execute yarn dev and You will be able to access the API from localhost:5400
-
 
 ## Hosted Api link
 
 Link: https://bankla.onrender.com
-
 
 ## APIs
 
@@ -35,37 +32,32 @@ Link: https://bankla.onrender.com
 
 - Route: /api/account/createaccount
 - Method: POST
-- Body: 
+- Body:
+
 ```
 
  {
-    "accountName":"denis  gari", 
-    "accountType":"savings", 
-    "dateOfBirth":{
-        "month":"january",
-        "date":10,
-        "year":1998
-    }
+    "accountName":"denis  gari",
+    "accountType":"savings",
+    "dateOfBirth":"1992-10-05"
 }
 
 ```
+
 - Responses
 
 Success
+
 ```
 {
     "message": "Account created succesfully",
     "data": {
         "accountName": "denis  gari",
-        "accountNumber": "7277240470",
-        "dateOfBirth": {
-            "month": "january",
-            "date": 10,
-            "year": 1998
-        },
+        "accountNumber": "8259830937",
+        "dateOfBirth": "1992-10-05",
         "accountType": "savings",
         "balance": 0,
-        "_id": "64f0af65bb061f9e4328e187",
+        "_id": "64f10505331a588c06bd2453",
         "__v": 0
     }
 }
@@ -77,36 +69,34 @@ Success
 
 - Route: /api/account/getaccount
 - Method: GET
-- Body: 
+- Body:
+
 ```
 
 {
-    "accountNumber": "7277240470"
+         "accountNumber": "8259830937",
 }
 
 ```
+
 - Responses
 
 Success
+
 ```
 {
     "message": "account fetched successfully",
     "data": {
-        "_id": "64f0af65bb061f9e4328e187",
+        "_id": "64f10505331a588c06bd2453",
         "accountName": "denis  gari",
-        "accountNumber": "7277240470",
-        "dateOfBirth": {
-            "month": "january",
-            "date": 10,
-            "year": 1998
-        },
+        "accountNumber": "8259830937",
+        "dateOfBirth": "1992-10-05",
         "accountType": "savings",
         "balance": 0,
         "__v": 0
     }
 }
 ```
-
 
 ---
 
@@ -118,81 +108,44 @@ Success
 - Responses
 
 Success
+
 ```
 {
     "message": "account fetched successfully",
     "data": {
         "docs": [
             {
-                "_id": "64ef7ac95f8ffcb16c04b478",
-                "accountName": "omoyib oghenetega",
-                "accountNumber": 6240631757,
-                "dateOfBirth": "may-10-1998",
-                "accountType": "savings",
-                "balance": 0,
-                "__v": 0,
-                "id": "64ef7ac95f8ffcb16c04b478"
-            },
-            {
-                "_id": "64f08016ab44ff2c12d963ab",
-                "accountName": "omoyib oghenetega",
-                "accountNumber": 1645462004,
-                "dateOfBirth": {
-                    "month": "january",
-                    "day": 10,
-                    "year": 1998
-                },
-                "accountType": "savings",
-                "balance": 0,
-                "__v": 0,
-                "id": "64f08016ab44ff2c12d963ab"
-            },
-            {
-                "_id": "64f08edaf542370279102bb7",
-                "accountName": "omoyib oghenetega",
-                "accountNumber": 5970423412,
-                "dateOfBirth": {
-                    "month": "january",
-                    "date": 10,
-                    "year": 1998
-                },
-                "accountType": "savings",
-                "balance": {
-                    "$numberDecimal": "0"
-                },
-                "__v": 0,
-                "id": "64f08edaf542370279102bb7"
-            },
-            {
-                "_id": "64f0954ab7c033173e0bc781",
-                "accountName": "omoyib oghenetega",
-                "accountNumber": "3314588503",
-                "dateOfBirth": {
-                    "month": "january",
-                    "date": 10,
-                    "year": 1998
-                },
-                "accountType": "savings",
-                "balance": 0,
-                "__v": 0,
-                "id": "64f0954ab7c033173e0bc781"
-            },
-            {
-                "_id": "64f0af65bb061f9e4328e187",
+                "_id": "64f10505331a588c06bd2453",
                 "accountName": "denis  gari",
-                "accountNumber": "7277240470",
-                "dateOfBirth": {
-                    "month": "january",
-                    "date": 10,
-                    "year": 1998
-                },
+                "accountNumber": "8259830937",
+                "dateOfBirth": "1992-10-05",
                 "accountType": "savings",
                 "balance": 0,
                 "__v": 0,
-                "id": "64f0af65bb061f9e4328e187"
+                "id": "64f10505331a588c06bd2453"
+            },
+            {
+                "_id": "64f10597331a588c06bd2456",
+                "accountName": "france europe",
+                "accountNumber": "0865910614",
+                "dateOfBirth": "1990-10-05",
+                "accountType": "current",
+                "balance": 0,
+                "__v": 0,
+                "id": "64f10597331a588c06bd2456"
+            },
+            {
+                "_id": "64f105d4331a588c06bd2458",
+                "accountName": "eden hazard",
+                "accountNumber": "2750799075",
+                "dateOfBirth": "1973-12-09",
+                "accountType": "savings",
+                "balance": 0,
+                "__v": 0,
+                "id": "64f105d4331a588c06bd2458"
             }
         ],
-        "totalDocs": 5,
+        "totalDocs": 3,
         "limit": 10,
         "totalPages": 1,
         "page": 1,

@@ -2,22 +2,17 @@ import httpStatus from "http-status";
 import accountqueries from "../database/queries/accountqueries";
 import { accountModel } from "../types/account";
 import { AppError } from "../utils/errors";
-import Helper from "../utils/helper";
+import { generateAccountNumber } from "../utils/helper";
 import { ACCOUNT_CREATION_ERROR, ACCOUNT_NOT_FOUND } from "../utils/message";
 
 async function createBankAccount(payload: accountModel): Promise<accountModel> {
   const { accountName, accountType, dateOfBirth, balance } = payload;
-  const accountNumber = await Helper.generateAccountNumber();
-  const month = dateOfBirth.month.toLowerCase();
+  const accountNumber = generateAccountNumber();
   const bankAccount = await accountqueries.createAccount({
     accountName: accountName,
     accountNumber: accountNumber,
     accountType: accountType,
-    dateOfBirth: {
-      month: month,
-      date: dateOfBirth.date,
-      year: dateOfBirth.year,
-    },
+    dateOfBirth: dateOfBirth,
     balance: balance,
   });
   if (!bankAccount)
