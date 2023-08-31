@@ -10,7 +10,7 @@ accountRouter.post(
   accountcontroller.createAccount
 );
 
-accountRouter.post(
+accountRouter.get(
   "/getaccount",
   accountMiddleware.getAccountMiddleware,
   accountcontroller.getAccount
