@@ -139,4 +139,14 @@ describe("POST /api/account/getaccount", () => {
     expect(body).toHaveProperty("message");
     expect(body.message).toBe(ACCOUNT_NOT_FOUND);
   });
+
+  describe("GET /api/account/getallaccount", () => {
+    test("should return error if account number is not valid", async () => {
+      const { body } = await api
+        .get("/api/account/getallaccounts")
+        .expect(httpStatus.OK);
+
+      expect(body.data.limit).toBe(10);
+    });
+  });
 });
