@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { accountModel } from "../../types/account";
+import mongoosePaginate from "mongoose-paginate-v2";
 
 const AccountSchema = new mongoose.Schema({
   accountName: {
@@ -35,4 +36,9 @@ const AccountSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model<accountModel>("Account", AccountSchema);
+AccountSchema.plugin(mongoosePaginate);
+
+export default mongoose.model<
+  accountModel,
+  mongoose.PaginateModel<accountModel>
+>("Account", AccountSchema);

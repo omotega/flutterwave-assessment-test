@@ -17,7 +17,8 @@
     "http-status": "^1.6.2",
     "http-terminator": "^3.2.0",
     "joi": "^17.10.0",
-    "mongoose": "^7.5.0"
+    "mongoose": "^7.5.0",
+    "mongoose-paginate-v2": "^1.7.31"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",

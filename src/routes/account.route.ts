@@ -16,4 +16,6 @@ accountRouter.post(
   accountcontroller.getAccount
 );
 
+accountRouter.get("/getallaccounts", accountcontroller.getAllBankAccounts);
+
 export default accountRouter;

@@ -5,7 +5,7 @@ import { AppError } from "../utils/errors";
 import Helper from "../utils/helper";
 import { ACCOUNT_CREATION_ERROR, ACCOUNT_NOT_FOUND } from "../utils/message";
 
-async function createBankAccount(payload: accountModel) {
+async function createBankAccount(payload: accountModel): Promise<accountModel> {
   const { accountName, accountType, dateOfBirth, balance } = payload;
   const accountNumber = await Helper.generateAccountNumber();
   const bankAccount = await accountqueries.createAccount({
@@ -27,7 +27,7 @@ async function createBankAccount(payload: accountModel) {
   return bankAccount;
 }
 
-async function getAccountDetails(accountNumber: string) {
+async function getAccountDetails(accountNumber: string): Promise<accountModel> {
   const account = await accountqueries.findAccountByAccountNumber(
     accountNumber
   );
@@ -39,7 +39,24 @@ async function getAccountDetails(accountNumber: string) {
   return account;
 }
 
+async function allAccount({ page, limit }: { page: number; limit: number }) {
+  const options = {
+    page,
+    limit,
+    sort: { createdAt: "desc" },
+    lean: true,
+  };
+  const accounts = await accountqueries.getAllBankAccount(options);
+  if (!accounts)
+    throw new AppError({
+      httpCode: httpStatus.NOT_FOUND,
+      description: ACCOUNT_NOT_FOUND,
+    });
+  return accounts;
+}
+
 export default {
   createBankAccount,
   getAccountDetails,
+  allAccount,
 };

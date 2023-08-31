@@ -23,7 +23,17 @@ const getAccount = catchAsync(async (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({ message: ACCOUNT_FOUND, data: account });
 });
 
+const getAllBankAccounts = catchAsync(async (req: Request, res: Response) => {
+  const { page = 1, limit = 10 } = req.query as unknown as {
+    page: number;
+    limit: number;
+  };
+  const accounts = await accountServices.allAccount({ page, limit });
+  res.status(httpStatus.OK).json({ message: ACCOUNT_FOUND, data: accounts });
+});
+
 export default {
   createAccount,
   getAccount,
+  getAllBankAccounts,
 };
