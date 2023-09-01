@@ -15,4 +15,8 @@ export const validationMessages = {
     "number.empty": "account name cannot be empty.",
     "any.required": '"account name" is required.',
   },
+  initialBalance: {
+    "number.empty": "initial balance cannot be empty.",
+    "any.required": '"initial balance" is required.',
+  },
 };

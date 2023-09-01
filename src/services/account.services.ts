@@ -6,14 +6,14 @@ import { generateAccountNumber } from "../utils/helper";
 import { ACCOUNT_CREATION_ERROR, ACCOUNT_NOT_FOUND } from "../utils/message";
 
 async function createBankAccount(payload: accountModel): Promise<accountModel> {
-  const { accountName, accountType, dateOfBirth, balance } = payload;
+  const { accountName, accountType, dateOfBirth, initialBalance } = payload;
   const accountNumber = generateAccountNumber();
   const bankAccount = await accountqueries.createAccount({
     accountName: accountName,
     accountNumber: accountNumber,
     accountType: accountType,
     dateOfBirth: dateOfBirth,
-    balance: balance,
+    initialBalance: initialBalance,
   });
   if (!bankAccount)
     throw new AppError({

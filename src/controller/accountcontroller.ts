@@ -5,12 +5,12 @@ import { ACCOUNT_CREATION_SUCCESS, ACCOUNT_FOUND } from "../utils/message";
 import catchAsync from "../utils/catchasync";
 
 const createAccount = catchAsync(async (req: Request, res: Response) => {
-  const { accountType, dateOfBirth, accountName } = req.body;
+  const { accountType, dateOfBirth, accountName,initialBalance } = req.body;
   const response = await accountServices.createBankAccount({
     accountName: accountName,
     accountType: accountType,
     dateOfBirth: dateOfBirth,
-    balance: 0,
+    initialBalance: initialBalance,
   });
   res
     .status(httpStatus.CREATED)

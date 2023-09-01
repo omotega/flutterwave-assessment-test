@@ -37,9 +37,10 @@ Link: https://bankla.onrender.com
 ```
 
  {
-    "accountName":"denis  gari",
-    "accountType":"savings",
-    "dateOfBirth":"1992-10-05"
+    "accountName":"eden hazard", 
+    "accountType":"savings", 
+    "dateOfBirth":"1973-12-09",
+    "initialBalance":1000.00
 }
 
 ```
@@ -52,12 +53,12 @@ Success
 {
     "message": "Account created succesfully",
     "data": {
-        "accountName": "denis  gari",
-        "accountNumber": "8259830937",
-        "dateOfBirth": "1992-10-05",
+        "accountName": "eden hazard",
+        "accountNumber": "7640347077",
+        "dateOfBirth": "1973-12-09",
         "accountType": "savings",
-        "balance": 0,
-        "_id": "64f10505331a588c06bd2453",
+        "initialBalance": 1000,
+        "_id": "64f1be0ef822286eb9e11d6d",
         "__v": 0
     }
 }
@@ -74,7 +75,7 @@ Success
 ```
 
 {
-         "accountNumber": "8259830937",
+      "accountNumber": "7640347077"
 }
 
 ```
@@ -87,12 +88,12 @@ Success
 {
     "message": "account fetched successfully",
     "data": {
-        "_id": "64f10505331a588c06bd2453",
-        "accountName": "denis  gari",
-        "accountNumber": "8259830937",
-        "dateOfBirth": "1992-10-05",
+        "_id": "64f1be0ef822286eb9e11d6d",
+        "accountName": "eden hazard",
+        "accountNumber": "7640347077",
+        "dateOfBirth": "1973-12-09",
         "accountType": "savings",
-        "balance": 0,
+        "initialBalance": 1000,
         "__v": 0
     }
 }
@@ -115,37 +116,27 @@ Success
     "data": {
         "docs": [
             {
-                "_id": "64f10505331a588c06bd2453",
-                "accountName": "denis  gari",
-                "accountNumber": "8259830937",
-                "dateOfBirth": "1992-10-05",
-                "accountType": "savings",
-                "balance": 0,
-                "__v": 0,
-                "id": "64f10505331a588c06bd2453"
-            },
-            {
-                "_id": "64f10597331a588c06bd2456",
-                "accountName": "france europe",
-                "accountNumber": "0865910614",
-                "dateOfBirth": "1990-10-05",
-                "accountType": "current",
-                "balance": 0,
-                "__v": 0,
-                "id": "64f10597331a588c06bd2456"
-            },
-            {
-                "_id": "64f105d4331a588c06bd2458",
+                "_id": "64f1be0ef822286eb9e11d6d",
                 "accountName": "eden hazard",
-                "accountNumber": "2750799075",
+                "accountNumber": "7640347077",
                 "dateOfBirth": "1973-12-09",
                 "accountType": "savings",
-                "balance": 0,
+                "initialBalance": 1000,
                 "__v": 0,
-                "id": "64f105d4331a588c06bd2458"
+                "id": "64f1be0ef822286eb9e11d6d"
+            },
+            {
+                "_id": "64f1be7bf822286eb9e11d70",
+                "accountName": "david david",
+                "accountNumber": "6507726331",
+                "dateOfBirth": "1977-10-19",
+                "accountType": "current",
+                "initialBalance": 1500,
+                "__v": 0,
+                "id": "64f1be7bf822286eb9e11d70"
             }
         ],
-        "totalDocs": 3,
+        "totalDocs": 2,
         "limit": 10,
         "totalPages": 1,
         "page": 1,

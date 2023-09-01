@@ -3,5 +3,5 @@ export interface accountModel {
   accountNumber?: string;
   dateOfBirth: string;
   accountType: string;
-  balance: number;
+  initialBalance: number;
 }

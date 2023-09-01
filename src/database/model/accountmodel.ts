@@ -13,6 +13,7 @@ const AccountSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: "String",
+    required: true,
   },
   accountType: {
     type: "String",
@@ -20,9 +21,9 @@ const AccountSchema = new mongoose.Schema({
     defaultValue: "savings",
     required: true,
   },
-  balance: {
+  initialBalance: {
     type: "Number",
-    defaultValue: 0,
+    required: true,
   },
 });
 
