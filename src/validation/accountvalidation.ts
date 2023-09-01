@@ -3,6 +3,7 @@ import { accountModel } from "../types/account";
 import { validationMessages } from "./custom";
 
 const createAccountValidation = (payload: accountModel) => {
+  const accountTypes = ["savings", "checking", "current", "business"];
   const accountSchema = joi.object({
     accountName: joi
       .string()
@@ -15,6 +16,8 @@ const createAccountValidation = (payload: accountModel) => {
       .messages(validationMessages.dateOfBirth),
     accountType: joi
       .string()
+      .valid(...accountTypes)
+      .insensitive()
       .required()
       .messages(validationMessages.accountType),
     initialBalance: joi
