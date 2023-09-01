@@ -11,7 +11,7 @@ async function createBankAccount(payload: accountModel): Promise<accountModel> {
   const bankAccount = await accountqueries.createAccount({
     accountName: accountName,
     accountNumber: accountNumber,
-    accountType: accountType,
+    accountType: accountType.toLowerCase(),
     dateOfBirth: dateOfBirth,
     initialBalance: initialBalance,
   });
