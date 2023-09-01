@@ -3,10 +3,9 @@ import app from "../../app";
 import mongoose from "mongoose";
 import supertest from "supertest";
 import {
-  accountdataFive,
   accountdataFour,
   accountdataOne,
-  accountdataSix,
+  accountdataSeven,
   accountdataThree,
   accountdataTwo,
 } from "../fixtures/account";
@@ -40,13 +39,13 @@ describe("POST /api/account/createaccount", () => {
     expect(body).toHaveProperty("message");
     expect(body.message).toBe(ACCOUNT_CREATION_SUCCESS);
     expect(body.data).toHaveProperty("_id");
-    expect(body.data).toHaveProperty("balance");
+    expect(body.data).toHaveProperty("initialBalance");
     expect(body.data).toHaveProperty("accountNumber");
     expect(body.data).toMatchObject({
       accountName: data.accountName,
       accountType: data.accountType,
       dateOfBirth: data.dateOfBirth,
-      balance: 0,
+      initialBalance: body.data.initialBalance,
     });
   });
   test("shouuld return error message if accountName is not passed", async () => {
@@ -78,6 +77,17 @@ describe("POST /api/account/createaccount", () => {
     expect(body).toHaveProperty("message");
     expect(body.message).toBe('"date of birth  is required!"');
   });
+
+  test("shouuld return error message if initial balance is not passed", async () => {
+    const data = accountdataSeven;
+    const { body } = await api
+      .post("/api/account/createaccount")
+      .send(data)
+      .expect(httpStatus.BAD_REQUEST);
+    expect(body).toHaveProperty("message");
+    expect(body.message).toBe('"initial balance" is required.');
+  });
+
 });
 
 describe("POST /api/account/getaccount", () => {
@@ -85,7 +95,7 @@ describe("POST /api/account/getaccount", () => {
     const data = {
       accountNumber: accountDetails.accountNumber,
     };
-    const { body, error } = await api
+    const { body } = await api
       .get("/api/account/getaccount")
       .send(data)
       .expect(httpStatus.OK);
@@ -95,7 +105,7 @@ describe("POST /api/account/getaccount", () => {
       accountType: accountDetails.accountType,
       accountNumber: data.accountNumber,
       dateOfBirth: accountDetails.dateOfBirth,
-      balance: accountDetails.balance,
+      initialBalance: accountDetails.initialBalance,
     });
   });
 
