@@ -6,6 +6,7 @@ import {
   accountdataFour,
   accountdataOne,
   accountdataSeven,
+  accountdataSix,
   accountdataThree,
   accountdataTwo,
 } from "../fixtures/account";
@@ -88,6 +89,17 @@ describe("POST /api/account/createaccount", () => {
     expect(body.message).toBe('"initial balance" is required.');
   });
 
+  test("shouuld return error message if initial balance is negative", async () => {
+    const data = accountdataSix;
+    const { body } = await api
+      .post("/api/account/createaccount")
+      .send(data)
+      .expect(httpStatus.BAD_REQUEST);
+    expect(body).toHaveProperty("message");
+    expect(body.message).toBe(
+      '"initialBalance" must be greater than or equal to 0'
+    );
+  });
 });
 
 describe("POST /api/account/getaccount", () => {

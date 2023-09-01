@@ -19,6 +19,7 @@ const createAccountValidation = (payload: accountModel) => {
       .messages(validationMessages.accountType),
     initialBalance: joi
       .number()
+      .min(0)
       .required()
       .messages(validationMessages.initialBalance),
   });

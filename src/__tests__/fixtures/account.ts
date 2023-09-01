@@ -36,13 +36,15 @@ export const accountdataSix = {
   accountName: faker.person.fullName(),
   accountType: "savings",
   dateOfBirth: "1979-07-02",
-  initialBalance: faker.commerce.price(),
+  initialBalance: -(faker.commerce.price()),
 };
+
 
 export const accountdataSeven = {
   accountName: faker.person.fullName(),
   accountType: "savings",
   dateOfBirth: "1960-09-08",
 };
+
 
 
